@@ -1,38 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spotify Style Music Player</title>
+  <title>Music Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
+
 <body>
 
 <header>
-  <h1>My Music</h1>
-  <input type="text" id="search" placeholder="Search music...">
+  <h2>🎧 My Music</h2>
+  <button id="themeToggle">🌙</button>
 </header>
 
-<main>
-  <div class="song-list" id="songList"></div>
-</main>
+<div class="search">
+  <input type="text" placeholder="Search songs...">
+</div>
 
-<footer class="player">
-  <div class="song-info">
-    <div class="wave">
-      <span></span><span></span><span></span>
-    </div>
-    <p id="currentSong">Nothing is playing</p>
-  </div>
+<div class="album-box">
+  <img id="cover" src="https://i.imgur.com/2nCt3Sbl.jpg">
+</div>
 
-  <div class="controls">
-    <button onclick="prevSong()">⏮</button>
-    <button class="play-btn" onclick="togglePlay()">▶</button>
-    <button onclick="nextSong()">⏭</button>
-  </div>
+<div class="song-info">
+  <h3 id="title">Chuttamalle</h3>
+  <p id="artist">Anirudh Ravichander</p>
+</div>
+
+<div id="waveform"></div>
+
+<div class="controls">
+  <button onclick="prevSong()">⏮</button>
+  <button onclick="togglePlay()">▶</button>
+  <button onclick="nextSong()">⏭</button>
+</div>
+
+<footer>
+  <a href="playlist.html">🎶 View Playlist</a>
 </footer>
-
-<audio id="audio"></audio>
 
 <script src="script.js"></script>
 </body>
