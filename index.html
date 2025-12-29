@@ -1,31 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Music Player</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Spotify Style Music Player</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="player">
-    <div class="cover">
-        <img id="cover" src="images/cover1.jpg">
+<header>
+  <h1>My Music</h1>
+  <input type="text" id="search" placeholder="Search music...">
+</header>
+
+<main>
+  <div class="song-list" id="songList"></div>
+</main>
+
+<footer class="player">
+  <div class="song-info">
+    <div class="wave">
+      <span></span><span></span><span></span>
     </div>
+    <p id="currentSong">Nothing is playing</p>
+  </div>
 
-    <h2 id="title">Song Title</h2>
-    <p id="artist">Artist Name</p>
+  <div class="controls">
+    <button onclick="prevSong()">⏮</button>
+    <button class="play-btn" onclick="togglePlay()">▶</button>
+    <button onclick="nextSong()">⏭</button>
+  </div>
+</footer>
 
-    <audio id="audio"></audio>
-
-    <input type="range" id="progress" value="0">
-
-    <div class="controls">
-        <button onclick="prevSong()">⏮</button>
-        <button onclick="playPause()">▶️</button>
-        <button onclick="nextSong()">⏭</button>
-    </div>
-</div>
+<audio id="audio"></audio>
 
 <script src="script.js"></script>
 </body>
-  </html>
+</html>
