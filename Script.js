@@ -1,57 +1,52 @@
 const songs = [
-  { title: "Chaudhary", file: "songs/chaudhary.mp3" },
-  { title: "Afreen Afreen", file: "songs/afreen.mp3" },
-  { title: "Yeh Tune Kya Kiya", file: "songs/yeh_tune.mp3" }
+  {
+    title: "Chuttamalle",
+    artist: "Anirudh Ravichander",
+    audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    cover: "https://i.imgur.com/2nCt3Sbl.jpg"
+  },
+  {
+    title: "Arabic Kuthu",
+    artist: "Anirudh Ravichander",
+    audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    cover: "https://i.imgur.com/FKQZK8U.jpg"
+  }
 ];
-
-const songList = document.getElementById("songList");
-const audio = document.getElementById("audio");
-const currentSong = document.getElementById("currentSong");
-const playBtn = document.querySelector(".play-btn");
 
 let index = 0;
 
-songs.forEach((song, i) => {
-  const div = document.createElement("div");
-  div.className = "song";
-  div.innerText = song.title;
-  div.onclick = () => playSong(i);
-  songList.appendChild(div);
+const wave = WaveSurfer.create({
+  container: "#waveform",
+  waveColor: "#aaa",
+  progressColor: "#1db954",
+  height: 80,
+  barWidth: 3,
+  responsive: true
 });
 
-function playSong(i) {
-  index = i;
-  audio.src = songs[i].file;
-  audio.play();
-  currentSong.innerText = songs[i].title;
-  playBtn.textContent = "⏸";
+function loadSong(i) {
+  const song = songs[i];
+  document.getElementById("title").innerText = song.title;
+  document.getElementById("artist").innerText = song.artist;
+  document.getElementById("cover").src = song.cover;
+  wave.load(song.audio);
 }
 
 function togglePlay() {
-  if (audio.paused) {
-    audio.play();
-    playBtn.textContent = "⏸";
-  } else {
-    audio.pause();
-    playBtn.textContent = "▶";
-  }
+  wave.playPause();
 }
 
 function nextSong() {
   index = (index + 1) % songs.length;
-  playSong(index);
+  loadSong(index);
 }
 
 function prevSong() {
   index = (index - 1 + songs.length) % songs.length;
-  playSong(index);
+  loadSong(index);
 }
 
-document.getElementById("search").addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
-  document.querySelectorAll(".song").forEach(song => {
-    song.style.display = song.innerText.toLowerCase().includes(value)
-      ? "block"
-      : "none";
-  });
-});
+document.getElementById("themeToggle").onclick = () =>
+  document.body.classList.toggle("light");
+
+loadSong(index);
